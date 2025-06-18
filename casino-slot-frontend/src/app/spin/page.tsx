@@ -22,7 +22,7 @@ const SpinPage = () => {
     }
 
     try {
-      const res = await axios.get('https://casino-slot-game.vercel.app/api/balance', {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/balance`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBalance(res.data.balance);
@@ -48,7 +48,7 @@ const SpinPage = () => {
 
     try {
       const res = await axios.post(
-        'https://casino-slot-game.vercel.app/api/spin',
+        `${process.env.NEXT_PUBLIC_API_URL}/api/spin`,
         { wager: Number(wager) },
         { headers: { Authorization: `Bearer ${token}` } }
       );

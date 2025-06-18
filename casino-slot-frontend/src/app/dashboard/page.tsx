@@ -38,8 +38,8 @@ const DashboardPage = () => {
         },
       };
 
-      const balanceRes = await axios.get('https://casino-slot-game.vercel.app/api/balance', config);
-      const txRes = await axios.get(`https://casino-slot-game.vercel.app/api/balance/transactions?page=${page}&limit=${limit}`, config);
+      const balanceRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/balance`, config);
+      const txRes = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/balance/transactions?page=${page}&limit=${limit}`, config);
 
       setBalance(balanceRes.data.balance);
       setTransactions(txRes.data.transactions);

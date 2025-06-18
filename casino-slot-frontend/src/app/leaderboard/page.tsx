@@ -18,7 +18,7 @@ export default function LeaderboardPage() {
     const fetchLeaderboard = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`https://casino-slot-game.vercel.app/stats/leaderboard?days=${days}`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/stats/leaderboard?days=${days}`);
         setLeaderboard(res.data);
       } catch (err) {
         console.error('Error fetching leaderboard:', err);
