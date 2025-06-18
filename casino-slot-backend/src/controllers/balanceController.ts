@@ -22,13 +22,17 @@ export const getTransactions = async (req: AuthRequest, res: Response): Promise<
     const limit = parseInt(req.query.limit as string) || 10;
     const skip = (page - 1) * limit;
 
-    const transactions = await Transaction.find({ user: req.userId })
-      .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit);
+    const [transactions, totalCount] = await Promise.all([
+      Transaction.find({ user: req.userId })
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit),
+      Transaction.countDocuments({ user: req.userId }),
+    ]);
 
-    res.json({ transactions });
+    res.json({ transactions, totalCount });
   } catch (err) {
     res.status(500).json({ message: 'Failed to fetch transactions' });
   }
 };
+
