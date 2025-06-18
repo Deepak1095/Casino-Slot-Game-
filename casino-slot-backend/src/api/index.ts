@@ -4,6 +4,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import authroutes from "../routes/spinRoutes"
+import authRoutes from '../routes/authRoutes';
 import spinRoutes from '../routes/spinRoutes';
 import balanceRoutes from '../routes/balanceRoutes';
 import leaderboardRoutes from '../routes/leaderboardRoutes';
@@ -18,7 +19,7 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use('/api/auth', authroutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/spin', spinRoutes);
 app.use('/api/balance', balanceRoutes);
 app.use('/stats', leaderboardRoutes);
