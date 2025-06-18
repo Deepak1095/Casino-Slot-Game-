@@ -26,7 +26,7 @@ app.use('/stats', leaderboardRoutes);
 const PORT = process.env.PORT || 5000;
 const server = http.createServer(app);
 initSocket(server);
-
+console.log('process.env.MONGO_URI!',process.env.MONGO_URI!)
 mongoose.connect(process.env.MONGO_URI!)
   .then(() => {
     server.listen(PORT, () => {
